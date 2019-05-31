@@ -1,6 +1,6 @@
 <template>
     <div class="detail">
-        <titleTop title="商品详情"></titleTop>
+        <!-- <titleTop title="商品详情"></titleTop> -->
            <div class="blocks" ref="blocks">
                <a href="javascript:void(0)" class="block">商品</a>
                <a href="javascript:void(0)" class="block">详情</a>
@@ -151,14 +151,12 @@
 
 
         <add-cart></add-cart>
-        <!-- <bottom></bottom>         -->
     </div>
 </template>
 
 <script>
-import title from '../components/title.vue';
-import bottom from '../components/bottom.vue';
-import addCart from '../components/addCart.vue';
+// import title from '../components/title.vue';
+import addCart from './addCart.vue';
 
 import Swiper from 'swiper';
 import 'swiper//dist/css/swiper.min.css'
@@ -216,8 +214,8 @@ export default {
          
     },
     components:{
-        titleTop:title,
-        bottom:bottom,
+        // titleTop:title,
+        // bottom:bottom,
         addCart:addCart
     },
     // computed: {

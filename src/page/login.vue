@@ -18,13 +18,16 @@
             </div>
             <div class="acoountbtn">
                 <!-- <v-touch tag="span" v-on:tap="login">登录</v-touch> -->
-                <span>登录</span>
+                <span @click="login">登录</span>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+//import {get,post} from '../http';
+//import {post,fetch,patch,put} from '../http'
+import axios from 'axios';
 export default {
     data(){
         return {
@@ -32,6 +35,22 @@ export default {
                 username:'',
                 password:''
             }
+        }
+    },
+    methods: {
+        login(){
+           axios.post('/user/userInfo',{id:34}).then(function(response){
+               if(response.data.result=='success'){
+                  
+                   const res = this.$store.commit('userLogin',response.data);
+                   //console.log(this.$store.state.login);
+                   //console.log('44');
+                   //router.push('/mine');
+                   this.$router.replace('/home/mine'); 
+                }
+           }.bind(this)).catch(function(error){
+               console.log(error);
+           });
         }
     },
    
@@ -44,7 +63,7 @@ export default {
 }
     .loginout{
         background: #fff;
-        padding-top: 0.7rem;
+        
         height: 100%;
     }
     .loginimg{
@@ -91,11 +110,11 @@ export default {
         -webkit-flex: flex;
         box-sizing: border-box;
         border-bottom: 1px solid #eaeaea;
-        margin: 0.5rem 1rem;
+        margin: 0.2rem 1rem;
         padding: 0.03rem 0;
     }
     .account .accounticon .phone,.account .accounticon .pwd{
-        width: 15%;
+        width: 10%;
         display: inline-block;
         height: 1rem;
     }
@@ -103,12 +122,12 @@ export default {
         width: 20%;
     }
     .account .accounticon .phone{
-        background:#fff url('../static/images/icon/phone.png') no-repeat 50% 100%;
+        background:#fff url('../static/images/icon/phone.png') no-repeat 50% 70%;
         background-size: contain;
     }
     .account .accounticon .pwd{
-        background:#fff url('../static/images/icon/pwd.png') no-repeat 50% 100%;
-       background-size: contain;
+        background:#fff url('../static/images/icon/pwd.png') no-repeat 50% 70%;
+        background-size: contain;
     }
     .account input{
         width: 90%;
@@ -125,7 +144,7 @@ export default {
         width: 80%;
         text-align: center;
         border-radius: 2rem;
-        background: linear-gradient(to right,#ffb833, #ff5151);
+        background: linear-gradient(to right,#ff9c06, #ff8181);
         display: inline-block;
         margin: 1rem 0;
         font-size: 0.5rem;

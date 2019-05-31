@@ -69,7 +69,7 @@
     </div>
 
     <div class="select">
-        <newBlock :data="like" :title="liketitle"></newBlock>
+        <newBlock :data="like">猜你喜欢</newBlock>
     </div>
     
 
@@ -77,12 +77,10 @@
 </template>
 
 <script>
-import bottom from '../components/bottom.vue';
-import newBlock from '../components/newBlock.vue';
+import newBlock from './newBlock.vue';
 export default {
     data(){
         return {
-            liketitle:"猜你喜欢",
             like:[
                     {id:1,proname:'商品是为了出售333而生',img:'../src/static/images/pro.jpg',privilege:'199',actual:'299', tags:['爆款','劵']},
                     {id:1,proname:'商品是为了出售而生',img:'../src/static/images/pro1.jpg',privilege:'199',actual:'299', tags:['爆款','劵']},
@@ -93,7 +91,6 @@ export default {
         }
     },
     components:{
-        bottom:bottom,
         newBlock:newBlock
     }
 }

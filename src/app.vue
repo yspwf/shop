@@ -1,163 +1,59 @@
 <template>
-    <div class="main">
-        <transition :name="switchover">
-            <router-view></router-view> 
-        </transition>
-        <bottom v-if="tagnav"></bottom>
+    <div>
+        <router-view></router-view>
+        <!-- <s-bottom></s-bottom> -->
     </div>
 </template>
 
 <script>
-import bottom from './components/bottom.vue';
+//import sBottom from './page/bottom.vue';
 export default {
-    data(){
+    data() {
         return {
-            switchover:'left',
-            tagnav: true
-        }
-    },
-    watch: {
-        $route(to, from){
-            console.log(to);
-            if(to.meta.index==0){
-                this.switchover=""
-                return ;
-            }
-            if(to.meta.index >= 4){
-                this.tagnav = false;
-            }else{
-                this.tagnav = true;
-            }
-            if(to.meta.index < from.meta.index){
-                console.log('right');
-                this.switchover="right"
-            }else{
-                console.log('left');
-                this.switchover="left"
-            }
+            
         }
     },
     components:{
-        bottom:bottom
-    }
+        //sBottom
+    },
+    watch: {
+        $route(to, from){
+            //console.log(to.name);
+            this.bottomChange(to.name);
+            // switch(to.name){
+            //     case 'home':
+            //         _this.$store.bottomCurrent = 1;
+            //         break;
+            //     case 'find':
+            //         _this.$store.bottomCurrent = 2;
+            //         break;
+            //     case 'mine':
+            //         _this.$store.bottomCurrent = 3;
+            //         break;
+            //     default :
+            //         console.log('error');
+            //         break;
+            // }
+        }
+    },
+    methods: {
+        bottomChange(name){
+           console.log(name);
+            switch(name){
+                case 'home':
+                    this.$store.state.bottomCurrent = 1;
+                    break;
+                case 'find':
+                    this.$store.state.bottomCurrent = 2;
+                    break;
+                case 'mine':
+                    this.$store.state.bottomCurrent = 3;
+                    break;
+                default :
+                    this.$store.state.bottomCurrent = 100;
+                    break;
+            }
+        }
+    },
 }
 </script>
-
-<style lang="scss" scoped>
-.main{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-}
-
-/*
-.left-enter,.left-leave-to{
-    transform: translate(-100%, 0);
-}
-.left-leave,.left-enter-to{
-    transform: translate(100%, 0);
-}
-.left-enter-active,.left-leave-active{
-    transition: all 0.3s;
-}
-*/
-
-/*
-.left-enter{
-  transform:translateX(100%);
-}
-.left-enter-to{
-  transform:translateX(0);
-}
- 
-.left-enter-active{
-   opacity: 1;
-  transition:all 0.3s linear;
-}
-.left-leave{
-  transform:translateX(-100%);
-}
-.left-leave-to{
-  transform:translateX(0);
-}
-.left-leave-active{
-    opacity: 0.5;
-    transition:all 0.1s linear;
-}
-
-
-
-.right-enter{
-  transform:translateX(0);
-}
-.right-enter-to{
-  transform:translateX(-100%);
-}
- 
-.right-enter-active{
-   opacity: 0;
-  transition: 0.3s;
-}
-.right-leave{
-  transform:translateX(0);
-}
-.right-leave-to{
-  transform:translateX(100%);
-}
-.right-leave-active{
-  opacity: 0;
-  transition: 0.3s;
-}
-*/
-
- .left-enter{
-    opacity: 1;
-    transform:translateX(100%);
- }
- .left-enter-active{
-    transition:all 0.21s linear;
- }
- .left-enter-to{
-    opacity: 1;
-    transform:translateX(0);
- }
- .left-leave{
-    opacity: 0;
-    transform:translateX(0);
- }
- .left-leave-active{
-     transition:all 0.11s linear;
- }
- .left-leave-to{
-    opacity: 0;
-    transform:translateX(-100%);
- }
-
-
- .right-enter{
-    opacity: 1;
-    transform:translateX(-100%);
- }
- .right-enter-active{
-    transition:all 0.21s linear;
- }
- .right-enter-to{
-    opacity: 1;
-    transform:translateX(0);
- }
-  .right-leave{
-    opacity: 0;
-    transform:translateX(100%);
- }
- .right-leave-active{
-     transition:all 0.11s linear;
- }
- .right-leave-to{
-    opacity: 0;
-    transform:translateX(100%);
- }
-
-</style>
-

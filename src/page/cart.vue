@@ -1,12 +1,11 @@
 <template>
     <div class="cart">
-        <title-top title="购物车"></title-top>
         
         <div class="cartlist">
             <div class="cart" v-for="(item, index) in products" :key="index">
                 <div class="checkbox">
                     <!-- <input type="checkbox" name="" id=""> -->
-                    <input type='checkbox' id='checkbox' @click="selectPro(item)" v-model="item.select">
+                  <input type='checkbox' id='checkbox' @click="selectPro(item.id)" v-model="item.select">
                 </div>
                 <div class="proimg">
                     <img src="/src/static/images/4.jpg" alt="">
@@ -27,7 +26,7 @@
                 </div>
                 <div class="btn">
                     <button class="reduce" @click="decrease(item)">-</button>
-                    <span>{{item.num}}</span>
+                    <div>{{item.num}}</div>
                     <button class="increase" @click="increase(item)">+</button>
                 </div>
             </div>
@@ -73,7 +72,7 @@
                 <span>￥{{allPrice}}</span>
                 </div>
                 <div class="btn">
-                    <router-link to="/order" class="buy">去结算</router-link>
+                    <router-link to="/home/order" class="buy">去结算</router-link>
                 </div>
             </div>
         </div>
@@ -83,11 +82,11 @@
 </template>
 
 <script>
-import title from '../components/title.vue';
-import order from '../components/order.vue';
+import order from './order.vue';
 export default {
     data() {
         return {
+            prods:[]
            // select: true
            //all: true
            //product: this.products,
@@ -112,6 +111,7 @@ export default {
         //     }
         // }
         selectPro(data){
+            //console.log(data);
             this.$store.commit('selectProduct', data);
         },
         decrease(data){
@@ -163,7 +163,6 @@ export default {
     //    }
     },
     components:{
-        titleTop: title,
         orderBtn: order
     }
 }
@@ -186,7 +185,7 @@ export default {
                 appearance: none;
                 /*编辑我们自己的样式*/
                 position: relative;
-                width: 50%;
+                width: 55%;
                 height: 0.45rem;
                 background: transparent;
                 border: 1px solid #d0d0d0;
@@ -215,7 +214,8 @@ export default {
                 -moz-border-radius: 50%;
                 border-radius: 50%;
                 opacity: 0;
-                font-size: 0.4rem;
+                font-size: 0.3rem;
+                text-align: center;
             /*
                 content: '✔';
                 position: absolute;
@@ -244,6 +244,9 @@ export default {
                 -moz-border-radius: 50%;
                 border-radius: 50%;
                 opacity: 1;
+            }
+            input[type=checkbox]:checked{
+                border: none;
             }
 
         }
@@ -300,7 +303,7 @@ export default {
                 border: 1px solid #d0d0d0;
                 background: #f9f9f9;
                 outline: none;
-                height: 0.48rem;
+                height: 0.53rem;
             }
             .reduce{
                 border-right: none;
@@ -308,10 +311,9 @@ export default {
             .increase{
                 border-left: none;
             }
-            span{
-                display: block;
+            div{
                 padding: 0 0.25rem;
-                height: 0.42rem;
+                height: 0.48rem;
                 border: 1px solid #dadada;
                 border-right: none;
                 border-left: none;
@@ -415,6 +417,9 @@ $around: space-around;
                 -moz-border-radius: 50%;
                 border-radius: 50%;
                 opacity: 1;
+            }
+            input[type=checkbox]:checked{
+                border: none;
             }
             label{
                 padding-left: 0.2rem;

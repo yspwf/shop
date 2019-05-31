@@ -1,7 +1,6 @@
 <template>
 <div>
     <div class="orderDetail">
-        <title-top title="订单详情"></title-top>
         <div class="ordertitle">
             <div class="title">
                 <i></i>
@@ -75,8 +74,7 @@
 </template>
 
 <script>
-import title from '../components/title.vue';
-import paybtn from '../components/pay.vue';
+import paybtn from './pay.vue';
 export default {
     data(){
         return {
@@ -90,7 +88,6 @@ export default {
         }
     },
     components:{
-        titleTop:title,
         paybtn:paybtn
     }
 }
@@ -99,7 +96,7 @@ export default {
 <style lang="scss" scoped>
 .orderDetail{
     background: #ff6161;
-    padding: 0 0.2rem;
+    padding: 0.5rem 0.2rem 0.1rem;
     .ordertitle{
          position: relative;
          padding-bottom: 1.5rem;
