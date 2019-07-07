@@ -2,43 +2,58 @@ import Vue from 'vue';
 import Router from 'vue-router';
 Vue.use(Router);
 
-// import INDEX from '../page/index.vue';
-// import HOME from '../page/home.vue';
-// import FIND from '../page/find.vue';
-// import MINE from '../page/mine.vue';
+ import INDEX from '../page/index.vue';
+ import HOME from '../page/home.vue';
+ import FIND from '../page/find.vue';
+ import MINE from '../page/mine.vue';
+ import DETAIL from '../page/detail.vue';
+ import CART from '../page/cart.vue';
+ import ORDERDETAIL from '../page/orderDetail.vue';
+ import LOGIN from '../page/login.vue';
+ import DOOD from '../page/good.vue';
+ import RECOMMEND from '../page/recommend.vue';
 
 const list = [
     {
         path:'/',
-        redirect:'/home/home'
+        redirect:'/home/find/good'
     },
     {
         path:'/home',
         name:'index',
-        component:  r => require.ensure([], () => r(require('../page/index.vue'))),
+        component: INDEX,
         children:[
             {
                 path:'home',
                 name:'home',
-                component:  r => require.ensure([], () => r(require('../page/home.vue')))
+                component: HOME
             },
             {
                 path:'find',
                 name:'find',
-                component: r => require.ensure([], () => r(require('../page/find.vue')))
+                component: FIND,
+                children:[
+                    {
+                        path:'good',
+                        name:'good',
+                        component: DOOD
+                    },
+                    {
+                        path:'recommend',
+                        name:'recommend',
+                        component: RECOMMEND
+                    }
+                ]
             },
             {
                 path:'mine',
                 name:'mine',
-                component: r => require.ensure([], () => r(require('../page/mine.vue'))),
-                meta:{
-                    auth: true
-                }
+                component: MINE
             },
             {
                 path:'detail',
                 name:'detail',
-                component: r => require.ensure([], () => r(require('../page/detail.vue'))),
+                component:DETAIL,
                 meta:{
                     auth: true
                 }
@@ -46,7 +61,7 @@ const list = [
             {
                 path:'cart',
                 name:'cart',
-                component: r => require.ensure([], () => r(require('../page/cart.vue'))),
+                component: CART,
                 meta:{
                     auth: true
                 }
@@ -54,7 +69,7 @@ const list = [
             {
                 path:'order',
                 name:'order',
-                component: r => require.ensure([], () => r(require('../page/orderDetail.vue'))),
+                component: ORDERDETAIL,
                 meta:{
                     auth: true
                 }
@@ -63,12 +78,14 @@ const list = [
     },
     {
         path:'/login',
-        component: r => require.ensure([], () => r(require('../page/login.vue'))),
+        component: LOGIN,
     }
 ];
 
+
+
 const router = new Router({
-    mode:'hash',
+    mode:'history',
     routes:list,
     scrollBehavior (to, from, savedPosition) {
         return new Promise((resolve, reject) => {

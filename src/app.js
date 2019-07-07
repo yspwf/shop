@@ -3,6 +3,13 @@ import App from './app.vue';
 
 import './static/main.css';
 
+// import VueRouter = require('vue-router');
+
+// new Vue({
+//      el:"#app",
+//      render: h=>h(App)
+// });
+
 import router from './router/index.js';
 import store from './store/index.js';
 

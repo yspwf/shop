@@ -1,7 +1,6 @@
 <template>
     <div>
         <router-view></router-view>
-        <!-- <s-bottom></s-bottom> -->
     </div>
 </template>
 

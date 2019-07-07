@@ -48,7 +48,7 @@ export default {
                     this.$router.replace('/home/home');
                     break;
                 case 'find':
-                    this.$router.replace('/home/find');
+                    this.$router.replace('/home/find/good');
                     break;
                 case 'mine':
                     this.$router.replace('/home/mine');
